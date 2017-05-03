@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Drive Index - /{{currDir}}/</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="/static/js/video.js"></script>
+</head>
+<body>
+<h1>HS Archive - /{{currDir}}/</h1>
+<hr>
+
+<pre>{% if prevDir %}<a href="/{{prevDir}}/">[To Parent Directory]</a><br>{% else %}<a href="/">[To Parent Directory]</a><br>{% endif %}{% for item in items %}{% if item.download %}{% if item.image %}
+{{item.date}}{{item.type}} <a href="{{item.imagelink}}">{{item.name}}</a>{% else %}
+{{item.date}}{{item.type}} <a href="/drive/{{item.id}}/{{item.name}}">{{item.name}}</a>{% endif %}{% if item.video %}  <a class="play" href="#" data-id='{{item.id}}' data-type='video'>[Play online]</a>{% endif %}{% if item.audio %}  <a class="play" href="#" data-id="/drive/{{item.id}}/{{item.name}}" data-title="{{item.name}}" data-type='audio'>[Play online]</a>{% endif %}{% else %}
+{{item.date}}{{item.type}} <a href="/drive/{{item.id}}/">{{item.name}}</a>{% endif %}{% endfor %}
+</pre>
+<hr>
+</body>
+</html>
